@@ -20,7 +20,6 @@ const Navbar = () => {
   const handleTheme = () => {
     const { nord, dim } = themes;
     const newTheme = theme === nord ? dim : nord;
-    console.log(document.documentElement);
     setTheme(newTheme);
   };
 
