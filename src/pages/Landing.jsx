@@ -4,8 +4,9 @@ import { customFetch } from "../utils";
 
 export const landingLoader = async () => {
   const response = await customFetch("/products?featured=true");
-  const featuredProducts = response.data.data;
-  return featuredProducts;
+  const products = response.data.data;
+ 
+  return { products };
 };
 
 const Landing = () => {

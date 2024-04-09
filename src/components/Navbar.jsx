@@ -7,8 +7,8 @@ import { HiBars3BottomLeft } from "react-icons/hi2";
 import NavLinks from "./NavLinks";
 
 const themes = {
-  nord: "nord",
-  dim: "dim",
+  light: "light",
+  dark: "dark",
 };
 
 const getThemeFromLocalStorage = () => {
@@ -18,8 +18,8 @@ const getThemeFromLocalStorage = () => {
 const Navbar = () => {
   const [theme, setTheme] = useState(getThemeFromLocalStorage());
   const handleTheme = () => {
-    const { nord, dim } = themes;
-    const newTheme = theme === nord ? dim : nord;
+    const { light, dark } = themes;
+    const newTheme = theme === light ? dark : light;
     setTheme(newTheme);
   };
 

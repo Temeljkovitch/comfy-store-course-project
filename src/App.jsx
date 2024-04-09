@@ -1,4 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+
 import {
   About,
   Cart,
@@ -16,6 +17,8 @@ import { ErrorElement } from "./components";
 
 // Loaders
 import { landingLoader } from "./pages/Landing";
+import { singleProductLoader } from "./pages/SingleProduct";
+import { productsLoader } from "./pages/Products";
 
 // Actions
 
@@ -34,10 +37,14 @@ const router = createBrowserRouter([
       {
         path: "products",
         element: <Products />,
+        errorElement: <ErrorElement />,
+        loader: productsLoader,
       },
       {
         path: "products/:id",
         element: <SingleProduct />,
+        errorElement: <ErrorElement />,
+        loader: singleProductLoader,
       },
       {
         path: "cart",
