@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { customFetch, formatPrice, generateAmountOption } from "../utils";
 import { Link, useLoaderData } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addItem } from "../features/cart/cartSlice";
 
 export const singleProductLoader = async (request) => {
   const id = request.params.id;
@@ -8,17 +10,35 @@ export const singleProductLoader = async (request) => {
   const product = response.data.data;
   return { product };
 };
+
 const SingleProduct = () => {
   const { product } = useLoaderData();
   const { image, title, company, price, description, colors } =
     product.attributes;
   const formattedPrice = formatPrice(price);
+
   const [productColor, setProductColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
 
+  const addToCart = () => {
+    dispatch(addItem({ product: cartProduct }));
+  };
   const handleAmount = (event) => {
     setAmount(Number(event.target.value));
   };
+
+  const cartProduct = {
+    cartID: product.id + productColor,
+    productID: product.id,
+    image,
+    title,
+    price,
+    amount,
+    company,
+    productColor,
+  };
+
+  const dispatch = useDispatch();
 
   return (
     <section>
@@ -45,6 +65,7 @@ const SingleProduct = () => {
           <h4 className="text-xl font-bold mt-2">{company}</h4>
           <p className=" text-xl mt-3">{formattedPrice}</p>
           <p className="mt-6 leading-8">{description}</p>
+          {/* Colors */}
           <div className="mt-6">
             <h4 className=" font-medium tracking-wider capitalize">colors</h4>
             <div className="mt-2">
@@ -63,6 +84,7 @@ const SingleProduct = () => {
               })}
             </div>
           </div>
+          {/* Amount */}
           <div className="form-control w-full max-w-xs">
             <label className="label" htmlFor="amount">
               <h4 className="font-medium tracking-wider capitalize">amount</h4>
@@ -73,13 +95,14 @@ const SingleProduct = () => {
               onChange={handleAmount}
               className="select select-primary select-bordered select-md"
             >
-              {generateAmountOption(3)}
+              {generateAmountOption(5)}
             </select>
           </div>
+          {/* Cart Button */}
           <div className="mt-10">
             <button
               className="btn btn-primary btn-md uppercase"
-              onClick={() => console.log("add product to the cart!")}
+              onClick={addToCart}
             >
               add to bag
             </button>

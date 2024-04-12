@@ -5,6 +5,7 @@ import { FaSun } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { HiBars3BottomLeft } from "react-icons/hi2";
 import NavLinks from "./NavLinks";
+import { useSelector } from "react-redux";
 
 const themes = {
   light: "light",
@@ -12,10 +13,11 @@ const themes = {
 };
 
 const getThemeFromLocalStorage = () => {
-  return localStorage.getItem("theme") || themes.nord;
+  return localStorage.getItem("theme") || themes.light;
 };
 
 const Navbar = () => {
+  const { numItemsInCart } = useSelector((state) => state.cartState);
   const [theme, setTheme] = useState(getThemeFromLocalStorage());
   const handleTheme = () => {
     const { light, dark } = themes;
@@ -73,7 +75,7 @@ const Navbar = () => {
             <div className="indicator">
               <FaShoppingCart className="h-6 w-6" />
               <span className="badge badge-sm badge-primary indicator-item">
-                0
+                {numItemsInCart}
               </span>
             </div>
           </NavLink>
