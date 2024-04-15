@@ -30,26 +30,8 @@ const cartSlice = createSlice({
       state.numItemsInCart += product.amount;
       state.cartTotal += product.price * product.amount;
       cartSlice.caseReducers.calculateTotals(state);
-      toast.success('item added to cart');
+      toast.success('Product added to cart!');
     },
-    // addItem: (state, action) => {
-    //   const product = action.payload;
-
-    //   // Checking if the same product is already in the cart
-    //   const currentItem = state.cartItems.find(
-    //     (item) => item.cartID === product.cartID
-    //   );
-    //   if (currentItem) {
-    //     // If we find the same product in the cart, we're going to change the "amount" property of it, by adding to it the new "amount" of the new product. Example: There's already a red lamp product in the cart with the "amount" property of 2. If we want to add a new red lamp product with the "amount" property of 3, we're  instead going to change the "amount" property of the "old" lamp product to 5.
-    //     currentItem.amount += product.amount;
-    //   } else {
-    //     state.cartItems.push(product);
-    //   }
-    //   state.numItemsInCart += product.amount;
-    //   state.cartTotal += product.price * product.amount;
-    //   cartSlice.caseReducers.calculateTotals(state);
-    //   toast.success("Product added to cart!");
-    // },
     removeItem: (state, action) => {
       const { cartID } = action.payload;
       const currentItem = state.cartItems.find(
@@ -70,19 +52,8 @@ const cartSlice = createSlice({
       state.cartTotal += item.price * (amount - item.amount);
       item.amount = amount;
       cartSlice.caseReducers.calculateTotals(state);
-      toast.success('Cart updated');
+      toast.success('Cart updated!');
     },
-    // editItem: (state, action) => {
-    //   const { cartID, amount } = action.payload;
-    //   const currentItem = state.cartItems.find(
-    //     (item) => item.cartID === cartID
-    //   );
-    //   state.numItemsInCart += amount - currentItem.amount;
-    //   state.cartTotal += currentItem.price * (amount - currentItem.amount);
-    //   currentItem.amount = amount;
-    //   cartSlice.caseReducers.calculateTotals(state);
-    //   toast.success("Cart updated!");
-    // },
     clearCart: (state) => {
       localStorage.setItem("cart", JSON.stringify(initialState));
       return initialState;
