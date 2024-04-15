@@ -17,6 +17,7 @@ export const loginAction =
       toast.success("Logged in successfully!");
       return redirect("/");
     } catch (error) {
+      console.log(error);
       const errorMessage =
         error?.response?.data?.error?.message ||
         "Please, check your credentials!";
@@ -55,7 +56,7 @@ const Login = () => {
         <FormInput name="identifier" type="email" label="email" />
         <FormInput name="password" type="password" label="password" />
         <div className="mt-4">
-          <SubmitButton value="login" />
+          <SubmitButton text="login" />
         </div>
         <button
           type="button"

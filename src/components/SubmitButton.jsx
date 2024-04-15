@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigation } from "react-router-dom";
 
-const SubmitButton = ({ value }) => {
+const SubmitButton = ({ text }) => {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
   return (
@@ -13,7 +13,7 @@ const SubmitButton = ({ value }) => {
       {isSubmitting ? (
         <span className="loading loading-ring loading-xs"></span>
       ) : (
-        value
+        text
       )}
     </button>
   );

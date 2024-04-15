@@ -11,6 +11,7 @@ export const registerAction = async ({ request }) => {
     toast.success("Account created successfully!");
     return redirect("/login");
   } catch (error) {
+    console.log(error);
     const errorMessage =
       error?.response?.data?.error?.message ||
       "Please, check your credentials!";
