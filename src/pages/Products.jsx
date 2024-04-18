@@ -6,7 +6,7 @@ export const productsLoader = async ({ request }) => {
   // const url = new URL(request.url);
   // const singleParam = url.searchParams.get("company"); // Getting a specific param
   // const params = Object.fromEntries(url.searchParams.entries());
-  
+
   const params = Object.fromEntries([
     ...new URL(request.url).searchParams.entries(),
   ]); // one-liner to get all params

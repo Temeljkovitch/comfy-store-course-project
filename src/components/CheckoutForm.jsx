@@ -44,10 +44,9 @@ export const checkoutAction =
       console.log(error);
       const errorMessage =
         error?.response?.data?.error?.message ||
-        "There was an error placing your order. Please, try again. ";
+        "There was an error placing your order. Please, try again.";
       toast.error(errorMessage);
-      if (error.response.status === 401) {
-        dispatch(logoutUser());
+      if (error.response.status === 401 || 403) {
         return redirect("/login");
       }
       return null;
@@ -55,7 +54,6 @@ export const checkoutAction =
   };
 
 const CheckoutForm = () => {
-  const dispatch = useDispatch();
   return (
     <div>
       <Form method="POST" className="flex flex-col gap-y-4">

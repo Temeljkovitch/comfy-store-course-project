@@ -8,6 +8,10 @@ const PaginationContainer = () => {
   const pages = Array.from({ length: pageCount }, (_, index) => {
     return index + 1;
   });
+  //   let pagesAlt = [];
+  //   for (let index = 1; index <= pageCount; index++) {
+  //     pagesAlt.push(index);
+  //   }
 
   const { search, pathname } = useLocation();
   const navigate = useNavigate();
@@ -15,7 +19,6 @@ const PaginationContainer = () => {
   const handlePageChange = (pageNumber) => {
     const searchParams = new URLSearchParams(search);
     searchParams.set("page", pageNumber);
-    console.log(pageNumber);
     navigate(`${pathname}?${searchParams.toString()}`);
   };
 
@@ -26,8 +29,8 @@ const PaginationContainer = () => {
         <button
           onClick={() => {
             let prevPage = page - 1;
-            if (prevPage < 1) prevPage = pageCount
-            handlePageChange(prevPage)
+            if (prevPage < 1) prevPage = pageCount;
+            handlePageChange(prevPage);
           }}
           className="btn btn-xs sm:btn-md join-item capitalize"
         >
@@ -49,8 +52,8 @@ const PaginationContainer = () => {
         <button
           onClick={() => {
             let nextPage = page + 1;
-            if (nextPage > pageCount) nextPage = 1
-            handlePageChange(nextPage)
+            if (nextPage > pageCount) nextPage = 1;
+            handlePageChange(nextPage);
           }}
           className="btn btn-xs sm:btn-md join-item capitalize"
         >
