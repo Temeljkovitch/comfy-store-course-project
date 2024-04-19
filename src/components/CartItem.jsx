@@ -12,7 +12,7 @@ const CartItem = ({ cartItem }) => {
   };
   const { cartID, image, title, company, productColor, price, amount } =
     cartItem;
-    
+
   return (
     <article className="mb-12 flex flex-col gap-y-4 sm:flex-row flex-wrap border-b-2 border-base-300 pb-6 last:border-b-0">
       {/* Image */}
@@ -49,7 +49,7 @@ const CartItem = ({ cartItem }) => {
             value={amount}
             onChange={handleAmount}
           >
-            {generateAmountOption(amount)}
+            {generateAmountOption(amount + 5)}
           </select>
         </div>
         {/* Remove */}
