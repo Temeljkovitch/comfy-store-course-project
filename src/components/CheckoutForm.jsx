@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
 export const checkoutAction =
-  (store) =>
+  (store, queryClient) =>
   async ({ request }) => {
     const formData = await request.formData();
     const { name, address } = Object.fromEntries(formData);
@@ -37,6 +37,7 @@ export const checkoutAction =
           },
         }
       );
+      queryClient.removeQueries(["orders"]);
       store.dispatch(clearCart());
       toast.success("Order placed succesfully!");
       return redirect("/orders");
@@ -46,7 +47,7 @@ export const checkoutAction =
         error?.response?.data?.error?.message ||
         "There was an error placing your order. Please, try again.";
       toast.error(errorMessage);
-      if (error.response.status === 401 || 403) {
+      if (error?.response?.status === 401 || 403) {
         return redirect("/login");
       }
       return null;

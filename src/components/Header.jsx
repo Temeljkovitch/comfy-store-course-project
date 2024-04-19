@@ -3,15 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logoutUser } from "../features/user/userSlice";
 import { clearCart } from "../features/cart/cartSlice";
+import { useQueryClient } from "@tanstack/react-query";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+  const queryClient = useQueryClient();
+
   const handleLogout = () => {
     dispatch(logoutUser());
     dispatch(clearCart());
     navigate("/");
+    queryClient.removeQueries()
   };
   const { user } = useSelector((state) => state.userState);
   return (
@@ -20,7 +23,9 @@ const Header = () => {
         {/* User */}
         {user ? (
           <div className="flex items-center gap-x-2 sm:gap-x-8">
-            <p className="text-xs sm:text-sm capitalize">Hello, {user.username}.</p>
+            <p className="text-xs sm:text-sm capitalize">
+              Hello, {user.username}.
+            </p>
             <button
               onClick={handleLogout}
               className="btn btn-primary btn-xs btn-outline uppercase"
