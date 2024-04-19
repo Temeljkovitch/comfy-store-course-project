@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import ProductsGrid from "./ProductsGrid";
 import ProductsList from "./ProductsList";
-import { useLoaderData } from "react-router-dom";
+import { useState } from "react";
 import { MdWindow } from "react-icons/md";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 const ProductsContainer = () => {
+  const { meta } = useLoaderData();
   const [layout, setLayout] = useState("grid");
 
   const setActiveStyles = (pattern) => {
@@ -16,7 +17,6 @@ const ProductsContainer = () => {
     }`;
   };
 
-  const { meta } = useLoaderData();
   return (
     <>
       {/* Header */}
@@ -29,13 +29,13 @@ const ProductsContainer = () => {
             onClick={() => setLayout("grid")}
             className={setActiveStyles("grid")}
           >
-            <MdWindow  />
+            <MdWindow />
           </button>
           <button
             onClick={() => setLayout("list")}
             className={setActiveStyles("list")}
           >
-            <RxHamburgerMenu  />
+            <RxHamburgerMenu />
           </button>
         </div>
       </div>

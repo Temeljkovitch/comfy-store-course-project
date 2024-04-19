@@ -1,5 +1,3 @@
-import React from "react";
-
 const FormCheckBox = ({ label, name, defaultValue, size }) => {
   return (
     <div className="form-control items-center">

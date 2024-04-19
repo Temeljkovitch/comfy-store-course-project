@@ -1,11 +1,8 @@
-import React from "react";
 import { Form, redirect } from "react-router-dom";
 import FormInput from "./FormInput";
 import SubmitButton from "./SubmitButton";
 import { customFetch, formatPrice } from "../utils";
 import { clearCart } from "../features/cart/cartSlice";
-import { logoutUser } from "../features/user/userSlice";
-import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
 export const checkoutAction =

@@ -1,4 +1,3 @@
-import React from "react";
 import ProductsGrid from "./ProductsGrid";
 import SectionTitle from "./SectionTitle";
 

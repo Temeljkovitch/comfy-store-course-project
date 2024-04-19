@@ -1,7 +1,6 @@
-import React from "react";
 import { formatPrice, generateAmountOption } from "../utils";
-import { useDispatch } from "react-redux";
 import { editItem, removeItem } from "../features/cart/cartSlice";
+import { useDispatch } from "react-redux";
 
 const CartItem = ({ cartItem }) => {
   const dispatch = useDispatch();
@@ -9,10 +8,11 @@ const CartItem = ({ cartItem }) => {
     dispatch(removeItem({ cartID }));
   };
   const handleAmount = (event) => {
-    dispatch(editItem({ cartID, amount: parseInt(event.target.value) }));
+    dispatch(editItem({ cartID, amount: Number(event.target.value) }));
   };
   const { cartID, image, title, company, productColor, price, amount } =
     cartItem;
+    
   return (
     <article className="mb-12 flex flex-col gap-y-4 sm:flex-row flex-wrap border-b-2 border-base-300 pb-6 last:border-b-0">
       {/* Image */}

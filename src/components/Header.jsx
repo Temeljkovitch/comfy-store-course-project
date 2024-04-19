@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logoutUser } from "../features/user/userSlice";
@@ -14,7 +13,7 @@ const Header = () => {
     dispatch(logoutUser());
     dispatch(clearCart());
     navigate("/");
-    queryClient.removeQueries()
+    queryClient.removeQueries();
   };
   const { user } = useSelector((state) => state.userState);
   return (

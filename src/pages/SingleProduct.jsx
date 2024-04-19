@@ -21,11 +21,11 @@ export const singleProductLoader = (queryClient) => async (request) => {
 const SingleProduct = () => {
   const { product } = useLoaderData();
   const { image, title, company, price, description, colors } =
-    product.attributes;
+  product.attributes;
   const formattedPrice = formatPrice(price);
-
   const [productColor, setProductColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
+  const dispatch = useDispatch();
 
   const addToCart = () => {
     dispatch(addItem({ product: cartProduct }));
@@ -45,7 +45,6 @@ const SingleProduct = () => {
     productColor,
   };
 
-  const dispatch = useDispatch();
 
   return (
     <section>
